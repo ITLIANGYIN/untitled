@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="stu" class="com.jxcia.pojo.Student">
+        <property name="id" value="1"/>
+        <property name="name" value="张三"/>
+<!--        <property name="strs" value="唱,跳">-->
+        <property name="strs">
+            <array>
+                <value>唱</value>
+                <value>跳</value>
+            </array>
+        </property>
+        <property name="list">
+            <list>
+                <value>三国</value>
+                <value>红楼梦</value>
+                <value>西游记</value>
+                <value>水浒</value>
+            </list>
+        </property>
+        <property name="set">
+            <set>
+                <value>李四</value>
+                <value>王五</value>
+            </set>
+        </property>
+        <property name="map" >
+            <map>
+                <entry key="id" value="321"/>
+                <entry key="name" value="钱六"/>
+            </map>
+        </property>
+        <property name="props" >
+            <props>
+                <prop key="id">115</prop>
+            </props>
+        </property>
+        <property name="books">
+            <list>
+                <ref bean="b1"></ref>
+                <ref bean="b2"></ref>
+            </list>
+        </property>
+        <property name="maps">
+            <map>
+                <entry key="b1" value-ref="b1"></entry>
+                <entry key="b2" value-ref="b2"></entry>
+            </map>
+        </property>
+    </bean>
+    <bean id="b1" class="com.jxcia.pojo.Book">
+        <property name="id" value="123"></property>
+        <property name="name" value="红楼梦"></property>
+    </bean>
+    <bean id="b2" class="com.jxcia.pojo.Book">
+        <property name="id" value="321"></property>
+        <property name="name" value="西游记"></property>
+    </bean>
+</beans>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- set注入方法 -->
+    <!--     自动装配
+    byType:按照类型装配(常用)
+    byName:按照名称匹配
+    constructor:按照构造方法
+    no:不启用自动装配
+    default:默认
+-->
+        <bean id="stu" class="com.jxcia.pojo.Student" autowire="byName">
+            <property name="id" value="1"/>
+            <property name="name" value="张三"/>
+            <!-- 引用类型 -->
+<!--            <property name="school" ref="school"/>-->
+        </bean>
+    <bean id="school" class="com.jxcia.pojo.School">
+        <property name="id" value="125"/>
+        <property name="name" value="江西信息应用职业技术学院"/>
+        <property name="address" value="气象路58号"/>
+    </bean>
+    <!-- 方式2：构造方法注入 -->
+    <bean id="stu1" class="com.jxcia.pojo.Student">
+        <constructor-arg index="0" value="5"/>
+        <constructor-arg index="1" value="李四"/>
+        <constructor-arg index="2" ref="school"/>
+    </bean>
+    <!-- p命名空间（少见） -->
+    <bean id="stu2" class="com.jxcia.pojo.Student" p:id="2"
+          p:name="王五" p:school="江西信息应用职业技术学院" p:school-ref="school" />
+
+</beans>

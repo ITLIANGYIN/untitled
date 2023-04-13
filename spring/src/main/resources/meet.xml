@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 方法一：调用构造方法创建对象 -->
+    <bean id="b1" class="com.jxcia.bean.Meet">
+        <property name="id" value="001"/>
+        <property name="breed" value="黄牛肉"/>
+        <property name="price" value="60"/>
+    </bean>
+    <!-- 方法二：静态工厂方法创建对象 -->
+    <bean id="b2" class="com.jxcia.factroy.MeetFactroy" factory-method="getMeet">
+        <constructor-arg value="神户牛肉"/>
+    </bean>
+    <!-- 方法三：非静态工厂方法创建对象 -->
+    <bean id="bfactory" class="com.jxcia.factroy.MeetFactory1"/>
+    <bean id="b3" factory-bean="bfactory" factory-method="getMeet">
+        <constructor-arg value="水牛肉"/>
+    </bean>
+</beans>

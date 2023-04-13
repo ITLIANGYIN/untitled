@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--    setter注入-->
+<!--    <bean id="bookDao" class="cn.jxcia.demo1.BookDaoImpl"></bean>-->
+<!--    <bean id="bookService" class="cn.jxcia.demo1.BookServiceImpl">-->
+<!--      <property name="bookDao" ref="bookDao"></property>-->
+<!--    </bean>-->
+<!--    构造器注入-->
+<!--    <bean id="userDao" class="cn.jxcia.demo1.UserDaoImpl"></bean>-->
+<!--    <bean id="bookDao" class="cn.jxcia.demo1.BookDaoImpl">-->
+<!--    </bean>-->
+
+<!--    <bean id="bookService" class="cn.jxcia.demo1.BookServiceImpl">-->
+<!--        <constructor-arg name="userDao" ref="userDao"></constructor-arg>-->
+<!--        <constructor-arg name="bookDao" ref="bookDao"></constructor-arg>-->
+<!--    </bean>-->
+<!--    标准书写方式，耦合度高-->
+<!--    <bean id="userDao" class="cn.jxcia.demo1.UserDaoImpl"></bean>-->
+<!--    <bean id="bookDao" class="cn.jxcia.demo1.BookDaoImpl">-->
+<!--        <constructor-arg name="databaseName" value="张三"></constructor-arg>-->
+<!--        <constructor-arg name="connectionNum" value="666"></constructor-arg>-->
+<!--    </bean>-->
+
+<!--    <bean id="bookService" class="cn.jxcia.demo1.BookServiceImpl">-->
+<!--        <constructor-arg name="userDao" ref="userDao"></constructor-arg>-->
+<!--        <constructor-arg name="bookDao" ref="bookDao"></constructor-arg>-->
+<!--    </bean>-->
+<!--    解决形参名称的问题，与形参名不耦合-->
+<!--    <bean id="userDao" class="cn.jxcia.demo1.UserDaoImpl"></bean>-->
+<!--    <bean id="bookDao" class="cn.jxcia.demo1.BookDaoImpl">-->
+<!--        <constructor-arg type="java.lang.String" value="张三"></constructor-arg>-->
+<!--        <constructor-arg type="int" value="666"></constructor-arg>-->
+<!--    </bean>-->
+
+<!--    <bean id="bookService" class="cn.jxcia.demo1.BookServiceImpl">-->
+<!--        <constructor-arg name="userDao" ref="userDao"></constructor-arg>-->
+<!--        <constructor-arg name="bookDao" ref="bookDao"></constructor-arg>-->
+<!--    </bean>-->
+<!--  解决形参类型重复问题，使用位置解决参数匹配  -->
+    <bean id="userDao" class="cn.jxcia.demo1.UserDaoImpl"></bean>
+    <bean id="bookDao" class="cn.jxcia.demo1.BookDaoImpl">
+        <constructor-arg index="0" value="张三"></constructor-arg>
+        <constructor-arg index="1" value="666"></constructor-arg>
+    </bean>
+
+    <bean id="bookService" class="cn.jxcia.demo1.BookServiceImpl">
+        <constructor-arg name="userDao" ref="userDao"></constructor-arg>
+        <constructor-arg name="bookDao" ref="bookDao"></constructor-arg>
+    </bean>
+</beans>

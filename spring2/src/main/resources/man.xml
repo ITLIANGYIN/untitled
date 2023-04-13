@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="m" class="com.jxcia.pojo.Man" autowire="byName">
+        <property name="id" value="111"/>
+        <property name="name" value="张三"/>
+    </bean>
+    <import resource="car.xml"/>
+    <bean id="car" class="com.jxcia.pojo.BMV">
+        <property name="brand" value="迈巴赫1"/>
+    </bean>
+    <!--
+    1.BeanFactory() 和 ApplicationContext()关系和区别：
+    ApplicationContext建立在BeanFactory的基础之上，提供了更多面向应用的功能， 它提供了国际化支持和框架事件体系
+    1）获取beanFactory和ApplicationContext方式不同
+    BeanFactory beanFactory=new XmlBeanFactory(new ClassPathResource(“applicationContext.xml”));
+    beanFactory.getBean(“mybean”);//得到bean
+    ApplicationContext ac=new ClassPathXmlApplicationContext("com/bean/factory/spring.xml");
+    Students student1=ac.getBean("student");
+    2）都可以获取bean,获取bean存在的区别:
+    BeanFactory在初始化容器时，并没有实例化Bean，直到第一次访问某个Bean时才实例化目标Bean。
+    ApplicationContext会在初始化应用上下文时就实例化所有单实例的Bean。
+    3）对BeanPostProcessor中的方法调用方式不同。这里先有文字说明具体实例在下面介绍BeanPostProcessor的时候介绍
+    若使用BeanFactory，则必须要显示的调用其addBeanPostProcessor()方法进行注册，参数为BeanPostProcessor实现类的实例,
+    并进行手动调用。如果是使用ApplicationContext，那么容器会在配置文件在中自动寻找实现了BeanPostProcessor接口的Bean，
+    然后自动注册，我们要做的只是配置一个BeanPostProcessor实现类的Bean就可以了。
+    2.ApplicationContext的实现类：
+    (1).ClassPathXmlApplicationContext
+    (2).FileSystemXmlApplicationContext
+    (3).XmlWebApplicationContext
+    (4).WebApplicationContext
+    3.spring对象的作用域：scope
+    scope="" singleton(默认单例) prototype(改变单例模式) request session global
+    singleton：单例模式，Spring IoC容器中只会存在一个共享的Bean实例，无论有多少个Bean引用它，始终指向同一对象。
+    Singleton作用域是Spring中的缺省作用域，也可以显示的将Bean定义为singleton模式，配置为：
+    prototype:原型模式，每次通过Spring容器获取prototype定义的bean时，容器都将创建一个新的Bean实例，
+    每个Bean实例都有自己的属性和状态，而singleton全局只有一个对象。根据经验，对有状态的bean使用prototype作用域，
+    而对无状态的bean使用singleton作用域。
+    request:(HTTP request表示该针对每一次HTTP请求都会产生一个新的bean，仅适用于WebApplicationContext环境.)
+    session:(HTTP session表示该针对每一次HTTP请求都会产生一个新的bean，仅适用于WebApplicationContext环境。)
+    global:(global Session：在一个全局的Http Session中，容器会返回该Bean的同一个实例，仅在使用portlet context时有效。)
+    4.spring生命周期：
+    spring的生命周期就是bean的生命周期，从bean开始装载，然后默认的以单例形式实例化，然后是属性注入，
+    然后是被装载到beanFactory，然后调用销毁方法。
+    1、以单例模式实例化
+    2、属性注入
+    3、转载到beanfatory中
+    4、销毁
+    实例化和属性注入对应构造方法和setter方法的注入，初始化和销毁是用户能自定义扩展的两个阶段。
+    5.spring框架实例化工厂(bean)方式:构造 静态工厂 非静态工厂
+    6.spring注入方式：set注入、构造方法注入、p命名空间（少见
+    7.自动装配：byName byType
+     -->
+</beans>

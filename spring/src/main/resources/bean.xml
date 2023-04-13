@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--声明对象 -->
+    <bean id="AcountDao" class="com.jxcia.dao.impl.AcountDaoImpl">
+
+    </bean>
+    <!-- 改变成为多例模式：scope="prototype"，默认单例 -->
+    <bean id="AcountService" class="com.jxcia.service.impl.AcountServiceImpl" scope="prototype"
+          init-method="init" destroy-method="destroy">
+        <!--属性注入 -->
+        <property name="ad" ref="AcountDao"></property>
+        <property name="name" value="张三"></property>
+    </bean>
+</beans>
+

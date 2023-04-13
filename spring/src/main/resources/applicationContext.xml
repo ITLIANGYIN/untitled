@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       <!-- 1.构造方法实例化bean-->
+        <bean id="bookDao" class="cn.jxcia.dao.impl.BookDaoImpl"></bean>
+        <bean id="bookService" class="cn.jxcia.service.impl.BookServiceImpl">
+                <property name="bookDao" ref="bookDao"></property>
+        </bean>
+    <!--2.使用静态工厂实例化bean
+    <bean id="orderDao" class="cn.jxcia.factory.OrderDaoFactory" factory-method="getOrderDao"></bean>
+    -->
+    <!-- 3.使用实例工厂实例化bean
+    <bean id="userFactory" class="cn.jxcia.factory.UserDaoFactory"></bean>
+    <bean id="userDao" factory-method="getUserDao" factory-bean="userFactory"></bean>
+    -->
+    <!-- 4.使用FactoryBean实例化bean-->
+    <bean id="userDao" class="cn.jxcia.factory.UserDaoFactoryBean"></bean>
+
+</beans>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--     自动装配
+    byType:按照类型装配(常用)
+    byName:按照名称匹配
+    constructor:按照构造方法
+    no:不启用自动装配
+    default:默认
+-->
+    <bean id="bookDao" class="cn.jxcia.demo02.BookDaoImpl"/>
+    <bean id="bookService" class="cn.jxcia.demo02.BookServiceImpl" autowire="byType"/>
+</beans>

@@ -1,0 +1,36 @@
+spring常用注解：
+	>注解生效：
+	<!-- 包扫描：扫描项目中的注解，让注解生效，让当前子包下所有注解生效 -->
+		<context:component-scan base-package="com"/>
+	>@Component:Spring框架实例化一个对象，默认对象名字：类的名字（首字母小写）
+	@Component(value="ud") 指定对象的名称，不指定使用默认名称
+	>@Value(""):给属性注入值
+		@Value("jdbc:mysql://127.0.0.1:3306/mybaitis2023")
+		private String url;
+		<!-- 引入外部属性文件 -->
+		<context:property-placeholder location="jdbc.properties" file-encoding="utf-8"/>
+			@Value("${jdbc.url}")
+			private String url;
+	>@Autowired  根据类型自动装配(如果根据匹配到多个对象，程序报错！)
+		@Qualifier("对象ID")： 需要和 @Autowired 搭配使用，当@Autowired匹配到多个对象之后，
+		根据@Qualifier("对象ID")指定装配其中哪一个
+	>@Resource(name="对象ID") == @Autowired+@Qualifier("对象ID")
+	  @Resource 既可以根据类型装配， 也可以根据名字装配
+	  @Component：  专门的组件对象
+	  @Repository   专门为dao层使用      本质都是@Component
+	  @Service      专门为service层      本质都是@Component
+	  @Controller	专门Controller使用   本质都是@Component
+
+	  Access denied for user ‘root’@‘localhost’ (using password: YES)的错误。
+      通过网上查找，大部分都是让我改数据库配置文件，在修改无效后，发现
+      jdbc.driver=com.mysql.cj.jdbc.Driver
+      jdbc.url=jdbc:mysql://localhost:3306/smbms?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=utf-8
+      jdbc.username=root
+      jdbc.password=123456
+      与系统变量名出现冲突
+      目测可能是thinkpad中的错误
+      更改为
+      jdbc.driver=com.mysql.cj.jdbc.Driver
+      jdbc.url=jdbc:mysql://localhost:3306/smbms?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true
+      jdbc.username=root
+      jdbc.password=123456
